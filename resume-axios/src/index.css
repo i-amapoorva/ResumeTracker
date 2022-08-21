@@ -1,0 +1,352 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+/* header design */
+.header {
+  display: flex;
+  background-color: #0075be;
+  z-index: 3;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.4rem 5rem;
+  color: #ffffff;
+  /* box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); */
+}
+.link {
+  cursor: pointer;
+  text-decoration: none;
+  color: #ffffff;
+}
+.logo {
+  margin: 0;
+}
+.sticky-header {
+  color: #ffffff;
+  width: 25%;
+  max-height: 34rem;
+  /* box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); */
+}
+/* margin design */
+.ml-2 {
+  margin-left: 3rem;
+}
+.ml {
+  margin: 25px 10px 10px 10px;
+}
+.ml_b {
+  margin-left: 2.5px;
+}
+.mt {
+  margin-top: 20px !important;
+}
+/* margin design */
+/* mobile view */
+@supports (position: sticky) {
+  .is-sticky {
+    position: sticky;
+    top: 3.5rem;
+  }
+  .sticky {
+    position: sticky;
+    top: 0;
+  }
+}
+/* end of header design */
+.txt {
+  text-align: center !important;
+  font-size: 25px !important;
+}
+.content {
+  max-width: 900vh;
+}
+.cardcontent {
+  max-width: 800vh;
+  display: flex;
+  flex-direction: row;
+  align-content: space-around;
+}
+.ant-card-body {
+  padding: 20px !important;
+  color: #65aef3;
+}
+
+.cd:hover {
+  box-shadow: 0 10px 20px 0 #65aef3;
+}
+
+.fitered-container {
+  display: "flex";
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.container {
+  display: flex;
+  list-style: none;
+}
+
+.page {
+  padding: 10px;
+  border: 1px solid #dcdcdc;
+  border-radius: 6px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.disabled {
+  cursor: not-allowed;
+}
+
+.active {
+  border: 2px solid #000;
+  font-weight: bold;
+}
+
+.previous {
+  padding: 10px;
+  border-radius: 6px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.break {
+  padding: 10px;
+}
+
+.next {
+  padding: 10px;
+  border-radius: 6px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.ant-btn {
+  margin-right: 8px !important;
+}
+
+/* Resume card design */
+.card_r {
+  width: 200px;
+  text-align: left;
+  background-color: #f2f2f2;
+  padding: 20px;
+  border-radius: "5px";
+}
+.card_r:hover {
+  box-shadow: 0 10px 20px 0 #f2f2f2;
+}
+.card_btn {
+  color: #ffffff;
+  border-color: none;
+  background-color: #0075be;
+  border-width: 1px;
+  border-radius: 0px;
+  padding: 10px 15px;
+  border: none;
+}
+.elementor-cta__title {
+  font-size: 15px;
+  color: #0075be;
+}
+/* Resume card design end */
+.headname {
+  color: #ffffff;
+  margin-left: 20px;
+}
+
+
+.upld {
+  padding: 20px 150px 150px;
+}
+mark {
+  background-color: yellow;
+  color: inherit;
+}
+/* login form design */
+.formlayout {
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  padding: 70px 0 90px 0;
+  background-color: #0075be;
+  height: 100vh;
+}
+.sub_formlayout {
+  display: flex;
+  justify-content: center;
+  height: 477px;
+  width: 35%;
+  padding-top: 30px;
+  border-radius: 60px;
+  background-color: white;
+}
+.imgs {
+  padding-top: 20px;
+  justify-content: center;
+  display: flex;
+}
+.container-img {
+  align-items: center;
+  display: flex;
+  padding: 20px ;
+}
+
+.name1 {
+  padding-left: 70px;
+  font-size: 20px;
+  width: 300px;
+  height: 50px;
+  border-radius: 50px;
+  box-shadow: inset 0px 0px 25px 0px #888;
+  border: none;
+  outline: none;
+  background-color: #fff;
+}
+.second-input {
+  padding-top: 20px;
+}
+.button-lg {
+  width: 300px;
+  height: 50px;
+  border-radius: 60px;
+  background-color: #0075be;
+  color: #fff !important;
+  font-size: 25px !important;
+  border: none;
+}
+.login-button {
+  padding-top: 25px;
+}
+/* end of login form */
+
+.tracker_text {
+  font-size: 15px;
+  /* color: #000; */
+}
+.feedbackselect {
+  width: 300px;
+  border-color: #dcdcdc;
+  height: 35px;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+}
+
+/* Tooltip text */
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  /* width: 120px; */
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+
+  /* Position the tooltip text */
+
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+
+  /* Fade in tooltip */
+
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+/* Tooltip arrow */
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* .react-pdf__Page__textContent {
+  color: #000 !important;
+} */
+
+.sub_formlayout_Registraion{
+  display: flex;
+  justify-content: center;
+  height: 115%;
+  width: 35%;
+  padding-top: none;
+  padding-bottom: 10px;
+  border-radius: 60px;
+  background-color: white;
+  
+}
+
+.sub_formlayout_signup{
+  display: flex;
+  justify-content: center;
+  height: 300px;
+  width: 25%;
+  /* padding-top: 90px */
+  /* padding: 0px 0px 0px 50px ; */
+  /* padding-bottom: 10px; */
+  border-radius: 60px;
+  background-color: white;
+}
+.welcome{
+  font-size: 25px;
+  /* font-style: italic; */
+  color: #0075be;
+}
+.table_layout{
+  padding: 20px 40px 40px 40px;
+}
+.table_create_button{
+  background-color: #0371b6 !important;
+  border: none !important;
+}
+.table_btn_layout{
+  display: flex;
+  align-items: flex-start;
+  padding: 40px 0px 10px 40px;
+}
+.User_layout{
+  padding-top: 40px;
+}
+.userformtitle{
+  color: #0075be;
+}
+/* profile design */
+.profile{
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  background-color: #ffffff;
+  align-content: center;
+  color: #000 !important;
+  padding: 10px 10px 20px 10px;
+}
+ 
