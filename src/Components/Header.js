@@ -54,11 +54,13 @@ function Header() {
   //   </div>;
   // };
 
+
+
   return (
     <div className="header sticky">
-      <h1 className="logo">
+      <h1 className="logo" style={{display:'flex', alignItems:'center'}}>
         <img src={logo} alt="logo" height={50}></img>
-        <span className="headname">Resume Tracker</span>
+        <span  className="headname">Resume Tracker</span>
       </h1>
       <div style={{display:'flex', alignItems:'center'}}>
         <Link className="link" to={"/resume-upload"}>

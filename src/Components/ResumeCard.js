@@ -254,8 +254,9 @@ function ResumeCard({ name, skill, id, inMyList, ResumeDetails }) {
       <Modal
         title="Tracker"
         visible={isModalVisible}
-        onOk={handleOk}
-        onCancel={handleCancel}
+         onOk={handleOk}
+         onCancel={handleCancel}
+        footer={null}
       >
         {feedbackData.map((p) =>
           p._source.feedback_type === "1" ? (
@@ -306,6 +307,7 @@ function ResumeCard({ name, skill, id, inMyList, ResumeDetails }) {
         visible={visible}
         onOk={() => setVisible(false)}
         onCancel={() => setVisible(false)}
+        footer={null}
         width={1000}
       >
         <form id="feedback_form">

@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../images/dtc_logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import api from "./Api";
 import TokenService from "./TokenService";
+import axios from "axios";
 
 function LoginForm() {
   const [email, setEmail] = useState(" ");
   const [password, setPassword] = useState(" ");
+  const [user, setUser] = useState("");
 
   const navigate = useNavigate();
 
@@ -57,6 +59,34 @@ function LoginForm() {
     }
   };
   /* Email & password Validation function end */
+
+  
+
+
+
+  const handleSubmit = async e => {
+    e.preventDefault();
+    const user = { email, password };
+    // send the username and password to the server
+    const response = await axios.post(
+      "/login", 
+      user
+    );
+    // set the state of the user
+    setUser(response.data)
+    // store the user in localStorage
+    localStorage.setItem('user', response.data)
+    console.log(response.data)
+  };
+
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem("user");
+    if (loggedInUser) {
+      const foundUser = JSON.parse(loggedInUser);
+      setUser(foundUser);
+      console.log(foundUser);
+    }
+  }, []);
   return (
     <div className="formlayout">
       <div className="sub_formlayout">
@@ -87,7 +117,7 @@ function LoginForm() {
               />
             </div>
             <div className="login-button">
-              <button className="button-lg" type="submit">
+              <button className="button-lg" type="submit" >
                 Login
               </button>
             </div>
