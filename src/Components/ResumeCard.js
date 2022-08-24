@@ -7,6 +7,7 @@ import dateFormat from "dateformat";
 import { EditTwoTone } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import ResumeUpdate from "../Pages/ResumeUpdate";
+import TokenService from "./TokenService";
 
 const { Option } = Select;
 
@@ -22,10 +23,14 @@ function ResumeCard({ name, skill, id, inMyList, ResumeDetails }) {
   const [feedback_type, setFeedbackType] = useState("");
   const [feedback, setFeedback] = useState("");
   const [feedbackData, setFeedbackData] = useState([]);
+  // const [form, setFeedback_form] = useState("");
+
+  const permission = TokenService.getPermission("permissions");
 
   const onReset = () => {
     console.log("a");
-    document.getElementById("interview_level").value = "";
+    document.getElementById("feedback_form").reset();
+    // form.resetFields();
   };
 
   const handleChange = (value) => {
@@ -141,6 +146,7 @@ function ResumeCard({ name, skill, id, inMyList, ResumeDetails }) {
         let response = res.data;
         alert(response.message);
         setLoader(false);
+        setVisible(false);
       })
       .catch((err) => {
         console.log(err);
@@ -260,7 +266,7 @@ function ResumeCard({ name, skill, id, inMyList, ResumeDetails }) {
       >
         {feedbackData.map((p) =>
           p._source.feedback_type === "1" ? (
-            <div>
+            <div className="feedbacklist">
               <p className="tracker_text">
                 Interviewed On:{formateDateTime(p._source.interview_datetime)}{" "}
               </p>
@@ -271,16 +277,19 @@ function ResumeCard({ name, skill, id, inMyList, ResumeDetails }) {
                 Interviewed By: {p._source.interviewed_by}
               </p>
               <p className="tracker_text">Feedback:{p._source.feedback} </p>
+              <p className="tracker_text">Feedback By:{p._source.feedback_by} </p>
               <br />
             </div>
           ) : (
-            <div>
+            <div className="feedbacklist">
               <p className="tracker_text">Feedback:{p._source.feedback} </p>
+              <p className="tracker_text">Feedback By:{p._source.feedback_by} </p>
               <br />
             </div>
           )
+           
         )}
-
+        {(permission.indexOf("store-feedback") !== -1)?
         <Button
           type="primary"
           onClick={() => {
@@ -290,14 +299,21 @@ function ResumeCard({ name, skill, id, inMyList, ResumeDetails }) {
         >
           Add Feedback
         </Button>
+         :null }
         {inMyList === 1 ? (
+          (permission.indexOf("my-resumes-list") !== -1)?
           <Button type="primary" onClick={removeFromMylist}>
             Remove From Mylist
           </Button>
+          :null 
         ) : (
-          <Button type="primary" onClick={addMylist}>
+          (permission.indexOf("my-resumes-list") !== -1)?
+          <Button type="primary"onClick={() =>{addMylist();
+            handleCancel();}
+          }>
             Add To Mylist
           </Button>
+          :null 
         )}
       </Modal>
 
@@ -386,9 +402,9 @@ function ResumeCard({ name, skill, id, inMyList, ResumeDetails }) {
           </Button>
           <Button
             type="button"
-            onClick={() => {
-              onReset();
-            }}
+            onClick={
+              onReset
+            }
           >
             Reset
           </Button>
@@ -396,11 +412,13 @@ function ResumeCard({ name, skill, id, inMyList, ResumeDetails }) {
       </Modal>
 
       <Modal
-        title="DocViewer"
+        title="Resume"
         visible={display}
         onOk={() => setDisplay(false)}
         onCancel={() => setDisplay(false)}
         width={1000}
+        // bodyStyle={{height: 500}}
+        footer={null}
       >
         <h3>Resume</h3>
         <button className="card_btn ml_b" onClick={() => downloadResume(id)}>

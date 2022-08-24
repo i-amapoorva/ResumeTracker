@@ -27,6 +27,9 @@ function LoginForm() {
         } else {
           TokenService.setUser(result["user"]);
           TokenService.updateLocalAccessToken(result["authorisation"]["token"]);
+          TokenService.setRole(result["role"][0]["name"]);
+          TokenService.setPermission(result["permissions"]);
+          //  console.log();
           console.log("in");
           navigate("/resume-upload");
         }

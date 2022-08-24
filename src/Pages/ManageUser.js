@@ -6,6 +6,8 @@ import api from "../Components/Api";
 import { Link, useNavigate } from "react-router-dom";
 import EditUser from "./EditUser";
 import { EditTwoTone, DeleteTwoTone, PlayCircleTwoTone, InteractionTwoTone } from "@ant-design/icons";
+import TokenService from "../Components/TokenService";
+
 
 const { Column, ColumnGroup } = Table;
 // const data = [
@@ -52,6 +54,8 @@ const ManageUser = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState(" ");
   const [role, setRole] = useState(" ");
+
+  const permission = TokenService.getPermission("permissions");
 
   const onChange = (page) => {
     console.log(page);
@@ -178,6 +182,8 @@ const ManageUser = () => {
     <div>
       <Header />
       <div className="table_btn_layout">
+
+      {(permission.indexOf("user-create") !== -1)?
         <Button
           type="primary"
           className="table_create_button"
@@ -185,6 +191,7 @@ const ManageUser = () => {
         >
           Create New User
         </Button>
+         :null }
       </div>
       <div className="table_layout">
         <Table dataSource={userData} pagination={false}>
@@ -245,17 +252,18 @@ const ManageUser = () => {
                   state= {{record}}
                   component={<EditUser/>}
                 >
+                  {(permission.indexOf("user-edit") !== -1)?
                   <Button><EditTwoTone />Edit</Button>
+                  :null }
                 </Link>
-                {/* <a>Delete</a> */}
-                <Button
+                {/* <Button
                   onClick={() => {
                     deleteuser(record.id);
                     viewuser();
                   }}
                 >
                  <DeleteTwoTone /> Delete
-                </Button>
+                </Button> */}
                 <Button onClick = {() => {changeUserStatus(record.id);
               viewuser();}}><InteractionTwoTone />Change Status</Button>
               </Space>

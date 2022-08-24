@@ -1,7 +1,7 @@
-
 class TokenService {
   getLocalAccessToken() {
-    const accessToken = localStorage.getItem("token_type")+" "+localStorage.getItem("token");
+    const accessToken =
+      localStorage.getItem("token_type") + " " + localStorage.getItem("token");
     // const accessToken = "Bearer ysandakjsnjsdkmkwj";
     return accessToken;
   }
@@ -23,6 +23,31 @@ class TokenService {
   }
   clearStorage() {
     localStorage.clear();
+  }
+
+  getPermission() {
+    return JSON.parse(localStorage.getItem("permissions"));
+  }
+  setPermission(permission) {
+    console.log(JSON.stringify(permission));
+    var name = [];
+    for (var i = 0; i < permission.length; i++) {
+      name.push(permission[i].name);
+    }
+    // const  permissionArray= permission.reduce((name)=>{
+    //   return ( {name});
+
+    //  })
+    console.log(name);
+    localStorage.setItem("permissions", JSON.stringify(name));
+  }
+
+  setRole(role) {
+    console.log(JSON.stringify(role));
+    localStorage.setItem("role", JSON.stringify(role));
+  }
+  getRole() {
+    return JSON.parse(localStorage.getItem("role"));
   }
 }
 export default new TokenService();

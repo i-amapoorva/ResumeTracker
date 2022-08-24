@@ -5,6 +5,7 @@ import api from '../Components/Api';
 import { Link } from "react-router-dom";
 import EditRole from "./EditRole";
 import { EditTwoTone, DeleteTwoTone, PlayCircleTwoTone, InteractionTwoTone } from "@ant-design/icons";
+import TokenService from "../Components/TokenService";
 
 
 const { Column, ColumnGroup } = Table;
@@ -18,6 +19,8 @@ const ManageRole = () => {
   const [display, setDisplay] = useState(false);
   const [rolename, setRolename] = useState(" ");
   const [selectedpermissions, setSelectedPermissions] = useState([]);
+
+  const permission = TokenService.getPermission("permissions");
 
   const onChange = (page) => {
     console.log(page);
@@ -116,9 +119,11 @@ const ManageRole = () => {
   <div>
     <Header />
     <div className="table_btn_layout">
+    {(permission.indexOf("role-create") !== -1)?
       <Button type="primary" className="table_create_button"
       onClick={() => (window.location.href = "/create-role")}
       >Create New Role</Button>
+      :null }
     </div>
     <div  className="table_layout">
       <Table pagination={false} dataSource={roleData}>
@@ -159,11 +164,13 @@ const ManageRole = () => {
                   state= {{record}}
                   component={<EditRole/>}
                 >
+                  {(permission.indexOf("role-edit") !== -1)?
                   <Button><EditTwoTone />Edit</Button>
+                  :null }
                 </Link>
-              {/* <a>Delete</a> */}
-              <Button onClick = {() => {deleteRole(record.id);
-              loadData();}}><DeleteTwoTone />Delete</Button>
+              
+              {/* <Button onClick = {() => {deleteRole(record.id);
+              loadData();}}><DeleteTwoTone />Delete</Button> */}
               <Button onClick = {() => {changeRoleStatus(record.id);
               loadData();}}><InteractionTwoTone />Change Status</Button>
             </Space>

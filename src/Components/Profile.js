@@ -11,9 +11,15 @@ import {
   UsergroupAddOutlined,
 } from "@ant-design/icons";
 import { Button, Dropdown, Menu, message, Space, Tooltip } from "antd";
+import TokenService from "./TokenService";
 
 function Profile() {
   const navigate = useNavigate();
+
+  const role = TokenService.getRole("role");
+  const permission = TokenService.getPermission("permissions");
+  const LoginUser = TokenService.getUser("user");
+  console.log(LoginUser);
 
   async function logOut() {
     api("/logout", {
@@ -61,25 +67,31 @@ function Profile() {
               // <UserSwitchOutlined />User
               // </Link>
               <a className="link">
-                <UserOutlined /> User
+                <UserOutlined /> {LoginUser.name}({role})
               </a>
             ),
           },
           {
             key: "2",
-            label: (
+            label:
+            (permission.indexOf("user-list") !== -1)?
+            (
               <Link className="link " to={"/manage-user"}>
                 <UserSwitchOutlined /> Manage User
               </Link>
-            ),
+            )
+            :null 
           },
           {
             key: "3",
-            label: (
+            label:
+            (permission.indexOf("role-list") !== -1)?
+             (
               <Link className="link" to={"/manage-Role"}>
                 <UsergroupAddOutlined /> Manage Role
               </Link>
-            ),
+            )
+            :null 
           },
           {
             key: "4",

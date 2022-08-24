@@ -332,10 +332,12 @@ const ResumeUpdate = () => {
             name="upload"
             label="Resume"
             valuePropName="fileList"
-            extra="Upload Resume"
+            // extra="Upload Resume"
           >
             <Input type="file" name="resume"></Input>
+            <a style={{marginLeft:'700px'}} onClick={() => displayModal(id)}>View Resume</a>
           </Form.Item>
+         
 
           <Form.Item
             wrapperCol={{
@@ -351,9 +353,9 @@ const ResumeUpdate = () => {
               View Resume
             </button>
             <br /> */}
-            <Button type="primary" className="m-1" onClick={() => displayModal(id)}>
+            {/* <Button type="primary" className="m-1" onClick={() => displayModal(id)}>
             View Resume
-            </Button><br />
+            </Button><br /> */}
             <Button type="primary" htmlType="submit" loading={loader}  className="mb">
               Submit
             </Button>

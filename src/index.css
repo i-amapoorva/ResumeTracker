@@ -40,6 +40,9 @@ code {
 .ml-2 {
   margin-left: 3rem;
 }
+.ml-3 {
+  margin-right: 5%;
+}
 .ml-1{
   margin-left: 1rem;
 }
@@ -359,3 +362,10 @@ mark {
   padding: 10px 10px 20px 10px;
 }
  
+.feedbacklist {
+  margin-top: 0;
+  margin-bottom: 1em;
+  gap: 2px;
+  line-height: 9px;
+  font-size: 20px !important;
+}
