@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import Header from "../Components/Header";
 import ResumeCard from "../Components/ResumeCard";
 import api from "../Components/Api";
+import RefinedSearch from "../Components/RefinedSearch";
 
 const { Search } = Input;
 
@@ -52,22 +53,24 @@ function ResumeSearch() {
 
   useEffect(() => {
     onSearch("", 1);
-  },[]);
+  }, []);
 
   return (
     <div>
       <Header />
       <div></div>
+      <RefinedSearch />
+      
       <div className="ml">
-        <Search
+        {/* <Search
           placeholder="Skills"
           style={{ width: 500 }}
           onSearch={(value) => onSearch(value, 1)}
           enterButton
-        />
+        /> */}
         <div
           className="ml d-flex justify-content-center"
-          style={{ minHeight: "70vh" }}
+          style={{ minHeight: "60vh" }}
         >
           {isLoaded ? (
             <Row

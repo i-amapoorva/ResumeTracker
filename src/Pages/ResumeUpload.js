@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import { Button, Form, Input, Select } from "antd";
 import Header from "../Components/Header";
 import { Option } from "antd/lib/mentions";
-import api from '../Components/Api';
-
-
+import api from "../Components/Api";
 
 const formItemLayout = {
   labelCol: {
@@ -33,7 +31,7 @@ const ResumeUpload = () => {
   const onReset = () => {
     form.resetFields();
   };
-/* Resume upload post api function */
+  /* Resume upload post api function */
   async function onHandleSumbit() {
     setLoader(true);
 
@@ -53,12 +51,11 @@ const ResumeUpload = () => {
     data.append("location", location);
     data.append("additional_info", additionalInfo);
 
-    
-    api('/store-resume',{  
-      method: "POST",      
+    api("/store-resume", {
+      method: "POST",
       data: data,
-    })  
-      .then((res) => { 
+    })
+      .then((res) => {
         let result = res.data;
         console.log(result);
         if (result.status === true) {
@@ -66,16 +63,17 @@ const ResumeUpload = () => {
           alert("Resume has been stored successsfully");
           setLoader(false);
           form.resetFields();
-        } 
-      }).catch((err) => { 
+        }
+      })
+      .catch((err) => {
         console.log(err);
         let error = err.response.data;
-        if(error.status===false){
-          alert('error');
+        if (error.status === false) {
+          alert("error");
         }
       });
   }
-/* Resume upload post api function */
+  /* Resume upload post api function */
 
   return (
     <div>

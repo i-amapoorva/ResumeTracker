@@ -3,47 +3,12 @@ import Header from "../Components/Header";
 import { Button, Pagination, Space, Table, Tag, Modal } from "antd";
 import api from "../Components/Api";
 // import { Link, Navigate } from "react-router-dom";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import EditUser from "./EditUser";
-import { EditTwoTone, DeleteTwoTone, PlayCircleTwoTone, InteractionTwoTone } from "@ant-design/icons";
+import { EditTwoTone, InteractionTwoTone } from "@ant-design/icons";
 import TokenService from "../Components/TokenService";
 
-
-const { Column, ColumnGroup } = Table;
-// const data = [
-//   {
-//     key: "1",
-//     num: "1",
-//     name: "John",
-//     lastName: "Brown",
-//     email: "john@mail.com",
-//     role: "Associate",
-//     tags: ["nice", "developer"],
-//   },
-//   {
-//     key: "2",
-//     num: "2",
-//     name: "Jim",
-//     lastName: "Green",
-//     email: "jim@mail.com",
-//     role: "Admin",
-//     tags: ["loser"],
-//   },
-//   {
-//     key: "3",
-//     num: "3",
-//     name: "Joe",
-//     lastName: "Black",
-//     email: "joe@mail.com",
-//     role: "Manager",
-//     tags: ["cool", "teacher"],
-//   },
-// ];
-// const Createuser = () => {
-//    return <Createuser />;
-//   navigate("/create-user");
-//   window.location =
-//   }
+const { Column } = Table;
 
 const ManageUser = () => {
   const [userData, setUserData] = useState([]);
@@ -122,23 +87,6 @@ const ManageUser = () => {
     setIsModalVisible(false);
   };
 
-  // async function edituser() {
-  //   api("/user-update", {
-  //     method: "POST",
-  //   })
-  //     .then((res) => {
-  //       let response = res.data;
-  //       console.log(response);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //       let error = err.response.data;
-  //       if (error.status === false) {
-  //         alert("error");
-  //       }
-  //     });
-  // }
-
   async function deleteuser(id) {
     api("/delete-user/" + id, {
       method: "Delete",
@@ -156,49 +104,47 @@ const ManageUser = () => {
       });
   }
 
-  const changeUserStatus = (id) =>{
-    var retVal = window.confirm("Are you Sure, you want to change the status of this role?");
-    if(retVal === true){
-        api('/user-status-change/'+id,{  
-          method: "GET",      
-        })  
-          .then((res) => { 
-            let response = res.data;
-            console.log(response);
-            alert(response.message);
-          }).catch((err) => { 
-            console.log(err);
-            let error = err.response.data;
-            if(error.status===false){
-              console.log('error');
-            }
+  const changeUserStatus = (id) => {
+    var retVal = window.confirm(
+      "Are you Sure, you want to change the status of this role?"
+    );
+    if (retVal === true) {
+      api("/user-status-change/" + id, {
+        method: "GET",
+      })
+        .then((res) => {
+          let response = res.data;
+          console.log(response);
+          alert(response.message);
+        })
+        .catch((err) => {
+          console.log(err);
+          let error = err.response.data;
+          if (error.status === false) {
+            console.log("error");
+          }
         });
-    }else{
+    } else {
       return false;
     }
-  }
+  };
 
   return (
     <div>
       <Header />
       <div className="table_btn_layout">
-
-      {(permission.indexOf("user-create") !== -1)?
-        <Button
-          type="primary"
-          className="table_create_button"
-          onClick={() => (window.location.href = "/create-user")}
-        >
-          Create New User
-        </Button>
-         :null }
+        {permission.indexOf("user-create") !== -1 ? (
+          <Button
+            type="primary"
+            className="table_create_button"
+            onClick={() => (window.location.href = "/create-user")}
+          >
+            Create New User
+          </Button>
+        ) : null}
       </div>
       <div className="table_layout">
         <Table dataSource={userData} pagination={false}>
-          {/* <ColumnGroup title="Name">
-        <Column title="First Name" dataIndex="firstName" key="firstName" />
-        <Column title="Last Name" dataIndex="lastName" key="lastName" />
-      </ColumnGroup> */}
           <Column
             title="Sl No"
             dataIndex="num"
@@ -208,7 +154,13 @@ const ManageUser = () => {
           <Column title="Name" dataIndex="name" key="name" />
           <Column title="Email" dataIndex="email" key="email" />
           <Column title="Role" dataIndex="role" key="role" />
-          <Column title="Status" render={(_,record) => record.status === 1 ? "Active" : "Inactive "} key="status" />
+          <Column
+            title="Status"
+            render={(_, record) =>
+              record.status === 1 ? "Active" : "Inactive "
+            }
+            key="status"
+          />
           {/* <Column
         title="Tags"
         dataIndex="tags"
@@ -249,12 +201,15 @@ const ManageUser = () => {
                 <Link
                   className="link"
                   to={`/edit-user/` + record.id}
-                  state= {{record}}
-                  component={<EditUser/>}
+                  state={{ record }}
+                  component={<EditUser />}
                 >
-                  {(permission.indexOf("user-edit") !== -1)?
-                  <Button><EditTwoTone />Edit</Button>
-                  :null }
+                  {permission.indexOf("user-edit") !== -1 ? (
+                    <Button>
+                      <EditTwoTone />
+                      Edit
+                    </Button>
+                  ) : null}
                 </Link>
                 {/* <Button
                   onClick={() => {
@@ -264,8 +219,15 @@ const ManageUser = () => {
                 >
                  <DeleteTwoTone /> Delete
                 </Button> */}
-                <Button onClick = {() => {changeUserStatus(record.id);
-              viewuser();}}><InteractionTwoTone />Change Status</Button>
+                <Button
+                  onClick={() => {
+                    changeUserStatus(record.id);
+                    viewuser();
+                  }}
+                >
+                  <InteractionTwoTone />
+                  Change Status
+                </Button>
               </Space>
             )}
           />

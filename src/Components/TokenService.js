@@ -34,10 +34,6 @@ class TokenService {
     for (var i = 0; i < permission.length; i++) {
       name.push(permission[i].name);
     }
-    // const  permissionArray= permission.reduce((name)=>{
-    //   return ( {name});
-
-    //  })
     console.log(name);
     localStorage.setItem("permissions", JSON.stringify(name));
   }

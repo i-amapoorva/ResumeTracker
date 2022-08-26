@@ -16,6 +16,8 @@ import ResumeUpdate from "./Pages/ResumeUpdate";
 import EditUser from "./Pages/EditUser";
 import EditRole from "./Pages/EditRole";
 import Profile from "./Components/Profile";
+import RefinedSearchComponent from "./Components/RefinedSearchComponent";
+import RefinedSearch from "./Components/RefinedSearch";
 
 
 const routes = (
@@ -42,7 +44,11 @@ const routes = (
 );
 
 function App() {
-  return <div className="App">{routes}</div>;
+  return <div className="App">
+    {routes}
+  {/* <RefinedSearch /> */}
+  {/* <RefinedSearchComponent /> */}
+  </div>;
 }
 
 export default App;

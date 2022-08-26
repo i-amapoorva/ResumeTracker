@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Header from "../Components/Header";
 import { Button, Form, Input, Select, Checkbox, Col, Row } from "antd";
-import api from '../Components/Api';
+import api from "../Components/Api";
 
 const layout = {
   labelCol: {
@@ -17,41 +17,41 @@ const tailLayout = {
     span: 8,
   },
 };
-const checkboxLayout ={
-    wrappercol :{
-        offset: 8,
-        span: 4,
-    },
-}
+const checkboxLayout = {
+  wrappercol: {
+    offset: 8,
+    span: 4,
+  },
+};
 
 function CreateRole() {
   const [form] = Form.useForm();
-  const[permissions, setPermissions] = useState([]);
-  const[permission, setPermission] = useState('');
+  const [permissions, setPermissions] = useState([]);
+  const [permission, setPermission] = useState("");
   const onFinish = (values) => {
     console.log(values);
     let item = {
-      name : values["name"],
-      permission : values['permission'].toString()
-    }
+      name: values["name"],
+      permission: values["permission"].toString(),
+    };
     console.log(item);
-    api('/create-role',{  
-      method: "POST",      
+    api("/create-role", {
+      method: "POST",
       data: JSON.stringify(item),
-    })  
-      .then((res) => { 
+    })
+      .then((res) => {
         let response = res.data;
         console.log(response);
         alert(response.message);
         onReset();
-      }).catch((err) => { 
+      })
+      .catch((err) => {
         console.log(err);
         let error = err.response.data;
-        if(error.status===false){
-          console.log('error');
+        if (error.status === false) {
+          console.log("error");
         }
-    });
-
+      });
   };
 
   const onReset = () => {
@@ -63,23 +63,23 @@ function CreateRole() {
   }, []);
 
   const loadData = (page) => {
-    api('/get-permissions', {  
-      method: "GET",      
-    })  
-      .then((res) => { 
+    api("/get-permissions", {
+      method: "GET",
+    })
+      .then((res) => {
         let response = res.data.data;
-        console.log(response);      
-        setPermissions(response);  
-      }).catch((err) => { 
+        console.log(response);
+        setPermissions(response);
+      })
+      .catch((err) => {
         console.log(err);
         let error = err.response.data;
-        if(error.status===false){
-           console.log('error');
+        if (error.status === false) {
+          console.log("error");
         }
-    });
+      });
   };
 
-  
   return (
     <div>
       <Header />
@@ -99,7 +99,7 @@ function CreateRole() {
           </Form.Item>
           <Form.Item {...checkboxLayout} name="permission" label="Permission">
             <Checkbox.Group>
-            {permissions.map((item, i) => {
+              {permissions.map((item, i) => {
                 return (
                   <Row>
                     <Col>
@@ -114,7 +114,7 @@ function CreateRole() {
                     </Col>
                   </Row>
                 );
-              })}              
+              })}
             </Checkbox.Group>
           </Form.Item>
           <Form.Item {...tailLayout}>

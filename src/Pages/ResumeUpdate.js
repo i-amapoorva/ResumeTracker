@@ -2,13 +2,10 @@ import DocViewer, { DocViewerRenderers } from "@cyntler/react-doc-viewer";
 
 import React, { useState, useEffect } from "react";
 import { Button, Form, Input, Select, Modal } from "antd";
-//import axios from "axios";
 import Header from "../Components/Header";
 import { Option } from "antd/lib/mentions";
 import api from "../Components/Api";
 import { useLocation, useParams, useNavigate } from "react-router-dom";
-
-//import TokenService from "../Components/TokenService";
 
 const formItemLayout = {
   labelCol: {

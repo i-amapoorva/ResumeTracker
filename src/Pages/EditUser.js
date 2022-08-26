@@ -43,7 +43,6 @@ function EditUser() {
     console.log(values);
     // usercreate();
     edituser();
-    
   };
 
   useEffect(() => {
@@ -77,8 +76,8 @@ function EditUser() {
       .then((res) => {
         let response = res.data;
         console.log(response);
-       alert(response.message);
-       navigate('/manage-user');
+        alert(response.message);
+        navigate("/manage-user");
       })
       .catch((err) => {
         console.log(err);
@@ -112,8 +111,6 @@ function EditUser() {
   };
 
   const handler = (event) => {
-    // const value = event.value
-    // setValueState(value);
     console.log(event);
     setRole(event);
   };
@@ -193,28 +190,7 @@ function EditUser() {
               })}
             </Select>
           </Form.Item>
-          {/* <Form.Item
-            noStyle
-            shouldUpdate={(prevValues, currentValues) =>
-              prevValues.gender !== currentValues.gender
-            }
-          >
-            {({ getFieldValue }) =>
-              getFieldValue("gender") === "other" ? (
-                <Form.Item
-                  name="customizeGender"
-                  label="Customize Gender"
-                  rules={[
-                    {
-                      required: true,
-                    },
-                  ]}
-                >
-                  <Input />
-                </Form.Item>
-              ) : null
-            }
-          </Form.Item> */}
+
           <Form.Item {...tailLayout}>
             <Button type="primary" htmlType="submit">
               Submit

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Header from "../Components/Header";
 import ResumeCard from "../Components/ResumeCard";
 import { Pagination } from "antd";
-import api from '../Components/Api';
+import api from "../Components/Api";
 
 function MyList() {
   const [isLoaded, setisLoaded] = useState(false);
@@ -14,29 +14,30 @@ function MyList() {
 
   const getAllData = async (page_no) => {
     let page = isNaN(page_no) ? "" : "?page_no=" + page_no;
-    api('/my-resumeslist'+page,{  
-      method: "GET",      
+    api("/my-resumeslist" + page, {
+      method: "GET",
     })
-    .then((res) => { 
-      let response = res.data;
-      console.log(response);
-      setMyResumeData(response?.response?.hits?.hits);
-      setTotalItem(response?.response?.hits?.total.value);
-      setpageSize(response.page_size);
-      setisLoaded(true);
-      return myResumeData;
-    }).catch((err) => { 
-      console.log(err);
-      let error = err.response.data;
-      if(error.status===false){
-        alert('error');
-      }
-    });    
+      .then((res) => {
+        let response = res.data;
+        console.log(response);
+        setMyResumeData(response?.response?.hits?.hits);
+        setTotalItem(response?.response?.hits?.total.value);
+        setpageSize(response.page_size);
+        setisLoaded(true);
+        return myResumeData;
+      })
+      .catch((err) => {
+        console.log(err);
+        let error = err.response.data;
+        if (error.status === false) {
+          alert("error");
+        }
+      });
   };
 
   useEffect(() => {
     getAllData();
-  },[]);
+  }, []);
 
   const onChange = (page) => {
     console.log(page);

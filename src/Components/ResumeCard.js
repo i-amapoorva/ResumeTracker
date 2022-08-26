@@ -73,7 +73,8 @@ function ResumeCard({ name, skill, id, inMyList, ResumeDetails }) {
         for (var i = 0; i < len; i++) {
           view[i] = binary.charCodeAt(i);
         }
-        const docs = [{ uri: linkSource }];
+        const docs = [{ uri: linkSource },
+        {uri: require("../file-sample.doc")}];
         setDocs(docs);
       })
       .catch((err) => {
@@ -245,7 +246,7 @@ function ResumeCard({ name, skill, id, inMyList, ResumeDetails }) {
         </h2>
         <p>
           <div class="tooltip">
-            {skill.length < 6 ? skill : skill.substring(0, 6) + ".."}
+            {skill.length < 6 ? skill : skill.substring(0, 12) + ".."}
             <span class="tooltiptext">{skill}</span>
           </div>
         </p>
@@ -260,8 +261,8 @@ function ResumeCard({ name, skill, id, inMyList, ResumeDetails }) {
       <Modal
         title="Tracker"
         visible={isModalVisible}
-         onOk={handleOk}
-         onCancel={handleCancel}
+        onOk={handleOk}
+        onCancel={handleCancel}
         footer={null}
       >
         {feedbackData.map((p) =>
@@ -277,44 +278,49 @@ function ResumeCard({ name, skill, id, inMyList, ResumeDetails }) {
                 Interviewed By: {p._source.interviewed_by}
               </p>
               <p className="tracker_text">Feedback:{p._source.feedback} </p>
-              <p className="tracker_text">Feedback By:{p._source.feedback_by} </p>
+              <p className="tracker_text">
+                Feedback By:{p._source.feedback_by}{" "}
+              </p>
               <br />
             </div>
           ) : (
             <div className="feedbacklist">
               <p className="tracker_text">Feedback:{p._source.feedback} </p>
-              <p className="tracker_text">Feedback By:{p._source.feedback_by} </p>
+              <p className="tracker_text">
+                Feedback By:{p._source.feedback_by}{" "}
+              </p>
               <br />
             </div>
           )
-           
         )}
-        {(permission.indexOf("store-feedback") !== -1)?
-        <Button
-          type="primary"
-          onClick={() => {
-            setVisible(true);
-            handleCancel();
-          }}
-        >
-          Add Feedback
-        </Button>
-         :null }
-        {inMyList === 1 ? (
-          (permission.indexOf("my-resumes-list") !== -1)?
-          <Button type="primary" onClick={removeFromMylist}>
-            Remove From Mylist
+        {permission.indexOf("store-feedback") !== -1 ? (
+          <Button
+            type="primary"
+            onClick={() => {
+              setVisible(true);
+              handleCancel();
+            }}
+          >
+            Add Feedback
           </Button>
-          :null 
-        ) : (
-          (permission.indexOf("my-resumes-list") !== -1)?
-          <Button type="primary"onClick={() =>{addMylist();
-            handleCancel();}
-          }>
+        ) : null}
+        {inMyList === 1 ? (
+          permission.indexOf("my-resumes-list") !== -1 ? (
+            <Button type="primary" onClick={removeFromMylist}>
+              Remove From Mylist
+            </Button>
+          ) : null
+        ) : permission.indexOf("my-resumes-list") !== -1 ? (
+          <Button
+            type="primary"
+            onClick={() => {
+              addMylist();
+              handleCancel();
+            }}
+          >
             Add To Mylist
           </Button>
-          :null 
-        )}
+        ) : null}
       </Modal>
 
       <Modal
@@ -400,12 +406,7 @@ function ResumeCard({ name, skill, id, inMyList, ResumeDetails }) {
           >
             Submit
           </Button>
-          <Button
-            type="button"
-            onClick={
-              onReset
-            }
-          >
+          <Button type="button" onClick={onReset}>
             Reset
           </Button>
         </form>

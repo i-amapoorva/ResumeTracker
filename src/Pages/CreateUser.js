@@ -31,26 +31,6 @@ function CreateUser() {
   // const [valueState,setValueState] = useState("")
 
   const [form] = Form.useForm();
-  // const onRoleChange = (value) => {
-  //   switch (value) {
-  //     case "admin":
-  //       form.setFieldsValue({
-  //         note: "Hi",
-  //       });
-  //       return;
-
-  //     case "manager":
-  //       form.setFieldsValue({
-  //         note: "Hi",
-  //       });
-  //       return;
-
-  //     case "associate":
-  //       form.setFieldsValue({
-  //         note: "Hi ",
-  //       });
-  //   }
-  // };
 
   const onFinish = (values) => {
     console.log(values);
@@ -60,13 +40,6 @@ function CreateUser() {
   const onReset = () => {
     form.resetFields();
   };
-
-  //   const onFill = () => {
-  //     form.setFieldsValue({
-  //       note: "Hello world!",
-  //       gender: "male",
-  //     });
-  //   };
 
   useEffect(() => {
     loadData();
@@ -195,28 +168,7 @@ function CreateUser() {
               })}
             </Select>
           </Form.Item>
-          {/* <Form.Item
-            noStyle
-            shouldUpdate={(prevValues, currentValues) =>
-              prevValues.gender !== currentValues.gender
-            }
-          >
-            {({ getFieldValue }) =>
-              getFieldValue("gender") === "other" ? (
-                <Form.Item
-                  name="customizeGender"
-                  label="Customize Gender"
-                  rules={[
-                    {
-                      required: true,
-                    },
-                  ]}
-                >
-                  <Input />
-                </Form.Item>
-              ) : null
-            }
-          </Form.Item> */}
+
           <Form.Item {...tailLayout}>
             <Button type="primary" htmlType="submit">
               Submit
