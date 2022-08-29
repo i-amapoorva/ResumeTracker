@@ -59,15 +59,15 @@ function ResumeSearch() {
     <div>
       <Header />
       <div></div>
-      <RefinedSearch />
+      {/* <RefinedSearch /> */}
       
       <div className="ml">
-        {/* <Search
+        <Search
           placeholder="Skills"
           style={{ width: 500 }}
           onSearch={(value) => onSearch(value, 1)}
           enterButton
-        /> */}
+        />
         <div
           className="ml d-flex justify-content-center"
           style={{ minHeight: "60vh" }}

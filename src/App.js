@@ -3,6 +3,7 @@ import ResumeUpload from "./Pages/ResumeUpload";
 import "antd/dist/antd.css";
 import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import ResumeSearch from "./Pages/ResumeSearch";
+// import searchComb from "./Pages/searchComb";
 import LoginForm from "./Components/LoginForm";
 import MyList from "./Pages/MyList";
 import SignUp from "./Pages/SignUp";
@@ -39,6 +40,7 @@ const routes = (
       <Route path="/edit-user/:id" element={<EditUser />} />
       <Route path="/edit-role/:id" element={<EditRole />} />
       <Route path="/profile" element={<Profile />} />
+      {/* <Route path="/search-Comb" element={<searchComb />} /> */}
     </Routes>
   </Router>
 );
